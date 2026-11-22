@@ -384,144 +384,11 @@ bool HighscoreList::eventloop(bool nameAlterable, bool *redrawNeeded) {
 		switch (event.type) {
 		case SDL_KEYDOWN:
 			if (nameAlterable) {
-				bool upper = ((event.key.keysym.mod & KMOD_LSHIFT) | (event.key.keysym.mod & KMOD_RSHIFT)) > 0;
-				if (event.key.keysym.sym == SDLK_RETURN) {
+				if (event.key.keysym.sym == SDLK_RETURN || event.key.keysym.sym == SDLK_KP_ENTER) {
 					finishEntry();
 					return false;
 				} else if (event.key.keysym.sym == SDLK_BACKSPACE || event.key.keysym.sym == SDLK_LEFT) {
 					entries->at(idxLastInsertedEntry)->removeLastCharFromPlayerName();
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_SPACE) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(' ');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_SEMICOLON || (upper && event.key.keysym.sym == SDLK_COMMA)) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(';');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_COLON || (upper && event.key.keysym.sym == SDLK_PERIOD)) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(':');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_COMMA) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(',');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_PERIOD) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('.');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_EXCLAIM || (upper && event.key.keysym.sym == SDLK_1)) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('!');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_QUESTION || (upper && event.key.keysym.sym == SDLK_PLUS)) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('?');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_MINUS || event.key.keysym.sym == SDLK_KP_MINUS) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('-');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_1 || event.key.keysym.sym == SDLK_KP_1) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('1');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_2 || event.key.keysym.sym == SDLK_KP_2) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('2');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_3 || event.key.keysym.sym == SDLK_KP_3) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('3');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_4 || event.key.keysym.sym == SDLK_KP_4) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('4');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_5 || event.key.keysym.sym == SDLK_KP_5) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('5');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_6 || event.key.keysym.sym == SDLK_KP_6) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('6');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_7 || event.key.keysym.sym == SDLK_KP_7) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('7');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_8 || event.key.keysym.sym == SDLK_KP_8) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('8');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_9 || event.key.keysym.sym == SDLK_KP_9) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('9');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_0 || event.key.keysym.sym == SDLK_KP_0) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName('0');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_a) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'A' : 'a');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_b) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'B' : 'b');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_c) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'C' : 'c');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_d) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'D' : 'd');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_e) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'E' : 'e');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_f) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'F' : 'f');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_g) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'G' : 'g');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_h) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'H' : 'h');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_i) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'I' : 'i');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_j) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'J' : 'j');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_k) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'K' : 'k');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_l) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'L' : 'l');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_m) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'M' : 'm');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_n) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'N' : 'n');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_o) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'O' : 'o');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_p) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'P' : 'p');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_q) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'Q' : 'q');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_r) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'R' : 'r');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_s) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'S' : 's');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_t) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'T' : 't');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_u) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'U' : 'u');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_v) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'V' : 'v');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_w) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'W' : 'w');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_x) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'X' : 'x');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_y) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'Y' : 'y');
-					*redrawNeeded = true;
-				} else if (event.key.keysym.sym == SDLK_z) {
-					entries->at(idxLastInsertedEntry)->addCharToPlayerName(upper ? 'Z' : 'z');
 					*redrawNeeded = true;
 				} else if (event.key.keysym.sym == SDLK_UP) {
 					entries->at(idxLastInsertedEntry)->rotateLastCharOfPlayerName(false);
@@ -542,6 +409,13 @@ bool HighscoreList::eventloop(bool nameAlterable, bool *redrawNeeded) {
 				} else if (event.key.keysym.sym == SDLK_s) {
 					Sounds::getInstance()->toggleEnabled();
 				}
+			}
+			break;
+		case SDL_TEXTINPUT:
+			if (nameAlterable) {
+				for (const char *c = event.text.text; *c; ++c)
+					entries->at(idxLastInsertedEntry)->addCharToPlayerName(*c);
+				*redrawNeeded = true;
 			}
 			break;
 		case SDL_CONTROLLERBUTTONDOWN:
@@ -619,6 +493,11 @@ void HighscoreList::show(bool nameAlterable, bool highlightLast) {
 	if (nameAlterable && idxLastInsertedEntry<0)
 		return;  // not a new highscore, so do not allow the player to enter a name
 	bool redrawNeeded, first = true;
+	bool textInput = nameAlterable && idxLastInsertedEntry >= 0;
+	if (textInput) {
+		SDL_StartTextInput();
+		SDL_FlushEvent(SDL_TEXTINPUT);
+	}
 	while (eventloop(idxLastInsertedEntry>=0 ? nameAlterable : false, &redrawNeeded)) {
 		if (redrawNeeded || first) {
 			first = false;
@@ -631,6 +510,8 @@ void HighscoreList::show(bool nameAlterable, bool highlightLast) {
 		}
 		SDL_Delay(Constants::MIN_FRAME_DURATION);
 	}
+	if (textInput)
+		SDL_StopTextInput();
 }
 
 void HighscoreList::resetHighlightedEntry() {
