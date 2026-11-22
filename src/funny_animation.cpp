@@ -63,6 +63,7 @@ FunnyAnimation::~FunnyAnimation() {
 	SDL_FreeSurface(animScore1600);
 	SDL_FreeSurface(pacmanName);
 	SDL_FreeSurface(blinkyName);
+	SDL_FreeSurface(pinkyName);
 	SDL_FreeSurface(inkyName);
 	SDL_FreeSurface(clydeName);
 	for (int i = 0; i < NUM_FRUITS; i++) {
@@ -70,6 +71,7 @@ FunnyAnimation::~FunnyAnimation() {
 		SDL_FreeSurface(animScores[i]);
 	}
 	delete[] animFruits;
+	delete[] animScores;
 }
 
 FunnyAnimation* FunnyAnimation::getInstance() {
