@@ -92,7 +92,7 @@ Pacman::~Pacman() {
 	SDL_FreeSurface(pacman_rechts_2);
 	SDL_FreeSurface(pacman_unten_1);
 	SDL_FreeSurface(pacman_unten_2);
-	for(int i = 0; i < 13; i++)
+	for(int i = 0; i < 16; i++)
 		SDL_FreeSurface(ar_pacman_die[i]);
 }
 
