@@ -176,6 +176,7 @@ int HighscoreList::insertEntry(HighscoreEntry *entry) {
 		if (entry->getScore()>(*it)->getScore() || (entry->getScore()==(*it)->getScore() && entry->getLevel()>(*it)->getLevel())) {
 			entries->insert(it, entry);
 			if ((int) entries->size() > maxSize) {
+				delete entries->back();
 				entries->pop_back();
 				if (sfPlayerNames[maxSize-1]) {
 					SDL_FreeSurface(sfPlayerNames[maxSize-1]);
@@ -208,6 +209,7 @@ int HighscoreList::insertEntry(HighscoreEntry *entry) {
 		entries->push_back(entry);
 		idxLastInsertedEntry = (int)entries->size()-1;
 	} else {
+		delete entry;
 		idxLastInsertedEntry = -1;
 	}
 	return idxLastInsertedEntry;
