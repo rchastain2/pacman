@@ -3,7 +3,7 @@
 #docker build -t pacman .
 #docker run -it -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY pacman
 FROM ubuntu:16.04
-RUN apt-get update && apt-get install -y build-essential libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev desktop-file-utils
+RUN apt-get update && apt-get install -y build-essential pkg-config libsdl2-dev libsdl2-image-dev libsdl2-ttf-dev libsdl2-mixer-dev desktop-file-utils
 COPY . /pacman
-RUN cd /pacman && ./configure && make && make install
+RUN cd /pacman && make PACKAGE_DATA_DIR=/usr/local/share/pacman && make install
 CMD /usr/local/bin/pacman

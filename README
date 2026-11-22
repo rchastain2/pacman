@@ -11,7 +11,9 @@ less use of CPU power.
 Install hint
 ------------
 
-You need libsdl, sdl-image, sdl-ttf and sdl-mixer. 
+You need make, g++, pkg-config and the development packages of SDL2,
+SDL2_image, SDL2_ttf and SDL2_mixer. Run "make" in the pacman directory,
+then start the game with "./pacman". See README.md for installation.
 
 
 License
