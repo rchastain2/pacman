@@ -357,6 +357,7 @@ bool Game::checkLastPillEaten() {
 		stopHuntingMode();
 		Labyrinth::getInstance()->nextLevel();
 		startOffset = Constants::START_OFFSET;
+		currentTicks = SDL_GetTicks();
 		return true;
 	}
 	return false;
