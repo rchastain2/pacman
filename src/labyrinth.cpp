@@ -455,7 +455,7 @@ void Labyrinth::resetLevel(int level) {
 	resetAllFigures();
 	if (level >= 1)
 		this->level->setLevel(level);
-	init_pillen(level <= 1);
+	init_pillen(level == 1);
 	draw_pillen();  // including background
 	loadLevelFruit();
 	startFruitRandomizer(true);
