@@ -469,6 +469,10 @@ void Labyrinth::resetLevel(int level) {
 
 void Labyrinth::loadLevelFruit() {
 	fruit = NULL;
+	if (infoFruit) {
+		SDL_FreeSurface(infoFruit);
+		infoFruit = NULL;
+	}
 	switch(level->getLevelNumber()) {
 		case 1:
 			setFruitBonus(100);
