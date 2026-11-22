@@ -297,7 +297,7 @@ void Game::handleAnimations() {
 
 void Game::handleStartOffset() {
 	// The "start offset" is a short wait time before the game begins, so the player may prepare to play.
-	if(startOffset > 0) {
+	if(startOffset > 0 && !pause) {
 		startOffset -= deltaT;
 		if (startOffset <= 0) {
 			startOffset = -1;
