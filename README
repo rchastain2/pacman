@@ -1,9 +1,9 @@
 Pacman
 ------
 
-This is a clone of the original pacman from Namco, as I remember , and I played 
+This is a clone of the original Pac-Man from Namco, as I remember , and I played 
 for the first time on an Atari 130 XL in the early 90s.
-But Paul Neaves pacman clone has inspired me greatly.
+But Paul Neaves Pac-Man clone has inspired me greatly.
 One of the main goals of this implementation is a SDL Application with very
 less use of CPU power.
 
