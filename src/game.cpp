@@ -81,14 +81,38 @@ void Game::updateDelayTime() {
 	}
 }
 
-void Game::preselectDirection(int keycode, int value) {
-	if (keycode == SDLK_LEFT || keycode == SDLK_h || keycode == SDL_CONTROLLER_BUTTON_DPAD_LEFT || ((keycode == SDL_CONTROLLER_AXIS_LEFTX) && (value < -Constants::AXIS_ACTIVE_ZONE))) {
+void Game::preselectDirectionKey(SDL_Keycode key) {
+	if (key == SDLK_LEFT || key == SDLK_h) {
 		Pacman::getInstance()->direction_pre = Figur::LEFT;
-	} else if (keycode == SDLK_UP || keycode == SDLK_k || keycode == SDL_CONTROLLER_BUTTON_DPAD_UP || ((keycode == SDL_CONTROLLER_AXIS_LEFTY) && (value < -Constants::AXIS_ACTIVE_ZONE))) {
+	} else if (key == SDLK_UP || key == SDLK_k) {
 		Pacman::getInstance()->direction_pre = Figur::UP;
-	} else if (keycode == SDLK_RIGHT || keycode == SDLK_l || keycode == SDL_CONTROLLER_BUTTON_DPAD_RIGHT || ((keycode == SDL_CONTROLLER_AXIS_LEFTX) && (value > Constants::AXIS_ACTIVE_ZONE))) {
+	} else if (key == SDLK_RIGHT || key == SDLK_l) {
 		Pacman::getInstance()->direction_pre = Figur::RIGHT;
-	} else if (keycode == SDLK_DOWN || keycode == SDLK_j || keycode == SDL_CONTROLLER_BUTTON_DPAD_DOWN || ((keycode == SDL_CONTROLLER_AXIS_LEFTY) && (value > Constants::AXIS_ACTIVE_ZONE))) {
+	} else if (key == SDLK_DOWN || key == SDLK_j) {
+		Pacman::getInstance()->direction_pre = Figur::DOWN;
+	}
+}
+
+void Game::preselectDirectionButton(Uint8 button) {
+	if (button == SDL_CONTROLLER_BUTTON_DPAD_LEFT) {
+		Pacman::getInstance()->direction_pre = Figur::LEFT;
+	} else if (button == SDL_CONTROLLER_BUTTON_DPAD_UP) {
+		Pacman::getInstance()->direction_pre = Figur::UP;
+	} else if (button == SDL_CONTROLLER_BUTTON_DPAD_RIGHT) {
+		Pacman::getInstance()->direction_pre = Figur::RIGHT;
+	} else if (button == SDL_CONTROLLER_BUTTON_DPAD_DOWN) {
+		Pacman::getInstance()->direction_pre = Figur::DOWN;
+	}
+}
+
+void Game::preselectDirectionAxis(Uint8 axis, Sint16 value) {
+	if (axis == SDL_CONTROLLER_AXIS_LEFTX && value < -Constants::AXIS_ACTIVE_ZONE) {
+		Pacman::getInstance()->direction_pre = Figur::LEFT;
+	} else if (axis == SDL_CONTROLLER_AXIS_LEFTY && value < -Constants::AXIS_ACTIVE_ZONE) {
+		Pacman::getInstance()->direction_pre = Figur::UP;
+	} else if (axis == SDL_CONTROLLER_AXIS_LEFTX && value > Constants::AXIS_ACTIVE_ZONE) {
+		Pacman::getInstance()->direction_pre = Figur::RIGHT;
+	} else if (axis == SDL_CONTROLLER_AXIS_LEFTY && value > Constants::AXIS_ACTIVE_ZONE) {
 		Pacman::getInstance()->direction_pre = Figur::DOWN;
 	}
 }
@@ -110,7 +134,7 @@ bool Game::eventloop() {
 			if(gameOver)
 				return false;
 			if(!Pacman::getInstance()->is_dying() && !pause) {
-				preselectDirection(event.key.keysym.sym);
+				preselectDirectionKey(event.key.keysym.sym);
 			}
 			if(event.key.keysym.sym == SDLK_f) {
 				Uint32 ticksBefore = SDL_GetTicks();
@@ -136,7 +160,7 @@ bool Game::eventloop() {
 			if(gameOver)
 				return false;
 			if(!Pacman::getInstance()->is_dying() && !pause) 
-				preselectDirection(event.cbutton.button);
+				preselectDirectionButton(event.cbutton.button);
 			if(event.cbutton.button == SDL_CONTROLLER_BUTTON_BACK) 
 				return false;
 			break;
@@ -144,7 +168,7 @@ bool Game::eventloop() {
 			if(gameOver)
 				return false;
 			if(!Pacman::getInstance()->is_dying() && !pause)
-				preselectDirection(event.caxis.axis, event.caxis.value);
+				preselectDirectionAxis(event.caxis.axis, event.caxis.value);
 			break;
 		case SDL_QUIT:
 			return false;
