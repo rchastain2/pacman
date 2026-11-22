@@ -80,6 +80,8 @@ Sounds::~Sounds() {
 		SAFE_FREE_CHUNK(chunk_eat_ghost);
 		SAFE_FREE_MUSIC(music_intro);
 		SAFE_FREE_MUSIC(music_siren_slow);
+		SAFE_FREE_MUSIC(music_siren_medium);
+		SAFE_FREE_MUSIC(music_siren_fast);
 		SAFE_FREE_MUSIC(music_superpill_loop);
 		SAFE_FREE_MUSIC(music_eat_ghost);
 		Mix_CloseAudio();
