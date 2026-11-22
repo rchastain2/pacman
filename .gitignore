@@ -1,14 +1,15 @@
 Makefile.in
 aclocal.m4
 compile
-config.h
 configure
 
 autom4te.cache
 
 *.o
-Makefile
 src/pacman
 src/.deps
 config.log
 config.status
+*.d
+/pacman
+src/data_dir.stamp
