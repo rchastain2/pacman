@@ -346,6 +346,7 @@ void Labyrinth::addScore(int value, int show_x, int show_y) {
 	// show the score at the specified position
 	ostringstream ostrScore;
 	ostrScore << value;
+	hideSmallScore();
 	smallScore = Screen::getTextSurface(Screen::getSmallFont(), ostrScore.str().c_str(), Constants::WHITE_COLOR);
 	smallScore_x = show_x - (smallScore->w >> 1);
 	smallScore_y = show_y - (smallScore->h >> 1);
@@ -405,7 +406,8 @@ int Labyrinth::getNumRemainingPills() const {
 }
 
 void Labyrinth::setInitText(const char *text, int color) {
-	initText = Screen::getTextSurface(Screen::getFont(), text, Constants::getIndexedColor(color));
+	hideInitText();
+	initText =Screen::getTextSurface(Screen::getFont(), text, Constants::getIndexedColor(color));
 }
 
 void Labyrinth::drawInitText() {
