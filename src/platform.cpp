@@ -6,62 +6,68 @@
 #define WINDOWS 0
 #endif
 
-void getFilePath(char filePath[], const char file[]) {
-     char installDir[256];
+std::string getFilePath(const char *file) {
 #if WINDOWS
-         strcpy(installDir, "");
+	std::string filePath = "";
 #else
-         strcpy(installDir, PACKAGE_DATA_DIR "/");
+	std::string filePath = PACKAGE_DATA_DIR "/";
 #endif
-     strcpy(filePath, installDir);
-     strcat(filePath, file);
+	filePath += file;
+	return filePath;
 }
 
-static char gameDirBase[256];
+static std::string gameDirBase;
+static bool gameDirBaseInitialized = false;
 
-void getGameDirPath(char filePath[], const char fileName[]) {
-	if (!gameDirBase[0]) {
+std::string getGameDirPath(const char *fileName) {
+	if (!gameDirBaseInitialized) {
+		gameDirBaseInitialized = true;
 		if (WINDOWS) {
 			char *env = getenv("APPDATA");
 			if (env) {
-				strcat(gameDirBase, env);
+				gameDirBase += env;
 			} else {
 				// not found, trying %HOMEDRIVE%%HOMEPATH%
 				env = getenv("HOMEDRIVE");
 				char *env2 = getenv("HOMEPATH");
 				if (env && env2) {
-					strcat(gameDirBase, env);
-					strcat(gameDirBase, env2);
+					gameDirBase += env;
+					gameDirBase += env2;
 				} else {
 					// not found, using current directory
 				}
 			}
 			if (env) {
-				size_t len = strlen(gameDirBase);
-				if (len == 0 || gameDirBase[len-1] != '\\')
-					strcat(gameDirBase, "\\");
-				strcat(gameDirBase, "pacman_sdl\\");
+				if (gameDirBase.empty() || gameDirBase[gameDirBase.length()-1] != '\\')
+					gameDirBase += "\\";
+				gameDirBase += "pacman_sdl\\";
 			}
 		} else {
-			strcpy(gameDirBase, getenv("HOME"));
-			size_t len = strlen(gameDirBase);
-			if (len == 0 || gameDirBase[len-1] != '/')
-				strcat(gameDirBase, "/");
-			strcat(gameDirBase, ".pacman_sdl/");
+			char *env = getenv("HOME");
+			if (env && env[0]) {
+				gameDirBase = env;
+				if (gameDirBase[gameDirBase.length()-1] != '/')
+					gameDirBase += "/";
+				gameDirBase += ".pacman_sdl/";
+			} else {
+				std::cerr << "HOME is not set, using the current directory for game files." << std::endl;
+			}
 		}
 	}
-	strcpy(filePath, gameDirBase);
+	std::string filePath = gameDirBase;
 	if (fileName)
-		strcat(filePath, fileName);
+		filePath += fileName;
+	return filePath;
 }
 
 void createGameDir() {
-	char gameDir[256];
-	getGameDirPath(gameDir, NULL);
+	std::string gameDir = getGameDirPath();
+	if (gameDir.empty())
+		return;
 #ifdef _WIN32
-	_mkdir(gameDir);
+	_mkdir(gameDir.c_str());
 #else
-	mkdir(gameDir, 0770);  // rwxrwx---
+	mkdir(gameDir.c_str(), 0770);  // rwxrwx---
 #endif
 }
 

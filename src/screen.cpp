@@ -194,10 +194,9 @@ void Screen::setFullscreen(bool fs) {
 }
 
 SDL_Surface *Screen::loadImage(const char *filename, int transparentColor) {
-	char filePath[256];
-	getFilePath(filePath, filename);
+	std::string filePath = getFilePath(filename);
 	SDL_Surface *surface, *temp;
-	temp = IMG_Load(filePath);
+	temp = IMG_Load(filePath.c_str());
 	if (!temp) {
 		std::cout << "Unable to load image: " << IMG_GetError() << std::endl;
 		exit(EXIT_FAILURE);
@@ -220,9 +219,8 @@ SDL_Surface *Screen::loadImage(const char *filename, int transparentColor) {
 }
 
 TTF_Font *Screen::loadFont(const char *filename, int ptSize) {
-	char filePath[256];
-	getFilePath(filePath, filename);
-	TTF_Font *font = TTF_OpenFont(filePath, ptSize);
+	std::string filePath = getFilePath(filename);
+	TTF_Font *font = TTF_OpenFont(filePath.c_str(), ptSize);
 	if (!font) {
 		std::cout << "Unable to open TTF font: " << TTF_GetError() << std::endl;
 		exit(EXIT_FAILURE);

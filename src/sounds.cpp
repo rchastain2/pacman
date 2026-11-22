@@ -229,9 +229,8 @@ void Sounds::playSingleSound(SingleSounds singlesounds) {
 }
 
 Mix_Chunk *Sounds::loadWaveSound(const char *filename) {
-	char filePath[256];
-	getFilePath(filePath, filename);
-	Mix_Chunk *sound = Mix_LoadWAV(filePath);
+	std::string filePath = getFilePath(filename);
+	Mix_Chunk *sound = Mix_LoadWAV(filePath.c_str());
 	if (!sound) {
 		std::cerr << "Unable to load wave sound file (" << filename << "): " << Mix_GetError() << std::endl;
 	}
@@ -239,9 +238,8 @@ Mix_Chunk *Sounds::loadWaveSound(const char *filename) {
 }
 
 Mix_Music *Sounds::loadWaveMusic(const char *filename) {
-	char filePath[256];
-	getFilePath(filePath, filename);
-	Mix_Music *music = Mix_LoadMUS(filePath);
+	std::string filePath = getFilePath(filename);
+	Mix_Music *music = Mix_LoadMUS(filePath.c_str());
 	if (!music) {
 		std::cerr << "Unable to load wave music file (" << filename << "): " << Mix_GetError() << std::endl;
 	}

@@ -15,10 +15,11 @@
 #include <unistd.h>
 #endif
 #include <iostream>
+#include <string>
 
-void getFilePath(char filePath[], const char file[]);
+std::string getFilePath(const char *file);
 
-void getGameDirPath(char filePath[], const char fileName[]);
+std::string getGameDirPath(const char *fileName = NULL);
 
 void createGameDir();
 

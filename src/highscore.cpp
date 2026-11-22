@@ -87,9 +87,7 @@ HighscoreList::HighscoreList(uint8_t maxSize):
 	filePath = std::string(CommandLineOptions::getValue("", "highscore"));
 	if (0 == filePath.length()) {
 		createGameDir();
-		char tmpFilePath[256];
-		getGameDirPath(tmpFilePath, "highscore");
-		filePath += tmpFilePath;
+		filePath = getGameDirPath("highscore");
 	} else if (isDirectory(filePath.c_str())) {  // A path has been provided. If this path points to a directory, append default filename to it.
 		if (filePath[filePath.length()-1] != Constants::FILE_SEPARATOR)
 			filePath += Constants::FILE_SEPARATOR;

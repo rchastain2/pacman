@@ -35,9 +35,8 @@ GameController::~GameController() {
 void GameController::searchAndOpen(bool reopen) {
 	if (!reopen && gameController)
 		return;
-	char filePath[256];
-	getFilePath(filePath, "txt/gamecontrollerdb.txt");
-	int mapping = SDL_GameControllerAddMappingsFromFile(filePath);
+	std::string filePath = getFilePath("txt/gamecontrollerdb.txt");
+	int mapping = SDL_GameControllerAddMappingsFromFile(filePath.c_str());
 	if (mapping == -1)
 		std::cout << "Error loading game controller mappings" << std::endl;
 	/*else  // comment in when debug option is implemented
