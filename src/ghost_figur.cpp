@@ -30,8 +30,8 @@ Ghost::Ghost(int init_x, int init_y, int init_intelligence,
              Direction init_direction, int init_up_down, int ghost_ident):
 	Figur(init_x, init_y, Constants::GHOSTS_V_NORMAL),
 	its_leader(0),
-	initial_intelligence(init_intelligence),
 	initial_direction(init_direction),
+	initial_intelligence(init_intelligence),
 	initial_up_down(init_up_down),
 	ghost_ident(ghost_ident),
 	idxCurrentRail(-1),  // should first be determined

@@ -83,8 +83,8 @@ HighscoreList::HighscoreList(uint8_t maxSize):
 	sfCurrentLevel(NULL),
 	sfReadonly(NULL),
 	fileIsEncrypted(false),
-	nextKeyPosition(0),
-	readonly(false)
+	readonly(false),
+	nextKeyPosition(0)
 {
 	this->maxSize = maxSize;
 	entries = new std::vector<HighscoreEntry*>();

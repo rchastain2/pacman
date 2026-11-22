@@ -18,13 +18,13 @@ void Sounds::cleanUpInstance() {
 }
 
 Sounds::Sounds():
-	channel_munch(-1),
-	munch_toggle(true),
-	audioAvailable(true),
+	musicPlaying(NONE),
 	enabled(!CommandLineOptions::exists("s","nosound")),
 	musicEnabled(!CommandLineOptions::exists("m","nomusic")),
 	initialized(false),
-	musicPlaying(NONE),
+	audioAvailable(true),
+	channel_munch(-1),
+	munch_toggle(true),
 	panicMode(false)
 {
 	if (enabled || musicEnabled) {

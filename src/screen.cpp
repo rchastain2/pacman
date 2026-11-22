@@ -44,10 +44,10 @@ void Screen::cleanUpInstance() {
 
 Screen::Screen():
 	window(NULL),
+	rect_num(0),
 	screen_surface(NULL),
 	sdlInitErrorOccured(false),
 	fullscreen(CommandLineOptions::exists("f","fullscreen")),
-	rect_num(0),
 	scalingFactor(1)
 {
 	// initialize SDL

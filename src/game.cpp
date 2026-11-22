@@ -22,9 +22,9 @@ Game::Game():
 	gameOver(false),
 	stopMoving(false),
 	refreshGhosts(false),
+	completeRedraw(false),
 	pause(false),
-	cnt_hunting_mode(-1),
-	completeRedraw(false)
+	cnt_hunting_mode(-1)
 {
 	scoreLabel = Screen::getTextSurface(Screen::getFont(), "Score", Constants::WHITE_COLOR);
 	levelLabel = Screen::getTextSurface(Screen::getFont(), "Level", Constants::WHITE_COLOR);
