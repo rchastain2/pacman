@@ -5,7 +5,7 @@ using namespace std;
 const std::string VALID_CHARACTERS = std::string(" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-.:,;!?");
 
 HighscoreEntry::HighscoreEntry(std::string playerName, int score, int level) {
-	this->playerName = std::string(playerName);
+	this->playerName = sanitizePlayerName(playerName);
 	this->score      = score;
 	this->level      = level;
 }
@@ -13,8 +13,22 @@ HighscoreEntry::HighscoreEntry(std::string playerName, int score, int level) {
 HighscoreEntry::~HighscoreEntry() {
 }
 
+std::string HighscoreEntry::sanitizePlayerName(const std::string &name) {
+	std::string result;
+	for (std::string::size_type i = 0; i < name.length(); ++i) {
+		if (VALID_CHARACTERS.find(name[i]) != std::string::npos)
+			result += name[i];
+	}
+	return result;
+}
+
+void HighscoreEntry::setPlayerName(const char *newName) {
+	playerName = sanitizePlayerName(newName ? std::string(newName) : std::string());
+}
+
 void HighscoreEntry::addCharToPlayerName(const char c) {
-	playerName += c;
+	if (VALID_CHARACTERS.find(c) != std::string::npos)
+		playerName += c;
 }
 
 void HighscoreEntry::removeLastCharFromPlayerName() {

@@ -24,8 +24,9 @@ class HighscoreEntry {
 		void addCharToPlayerName(const char c);
 		void removeLastCharFromPlayerName();
 		void rotateLastCharOfPlayerName(bool reverse);
-		void setPlayerName(const char *newName) { playerName = newName; }
+		void setPlayerName(const char *newName);
 	private:
+		static std::string sanitizePlayerName(const std::string &name);
 		std::string playerName;
 		int score;
 		int level;
