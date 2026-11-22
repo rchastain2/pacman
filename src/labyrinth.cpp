@@ -332,6 +332,7 @@ void Labyrinth::drawScoreValue() {
 		if (score)
 			SDL_FreeSurface(score);
 		score = Screen::getTextSurface(Screen::getFont(), ostrPunktestand.str().c_str(), Constants::YELLOW_COLOR);
+		lastPunktestand = punktestand;
 	}
 	Screen::getInstance()->draw_dynamic_content(score, Constants::SCORE_X, Constants::SCORE_VALUE_Y);
 }
