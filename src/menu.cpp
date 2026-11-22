@@ -121,8 +121,8 @@ int Menu::eventloop() {
 			}
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			event_x = Screen::xToClipRect(event.motion.x);
-			event_y = Screen::yToClipRect(event.motion.y);
+			event_x = Screen::xToClipRect(event.button.x);
+			event_y = Screen::yToClipRect(event.button.y);
 			if (event.button.button == SDL_BUTTON_LEFT) {
 				if (menuItems.at(selection)->getXPosition() <= event_x &&
 					event_x <= menuItems.at(selection)->getXPosition()+menuItems.at(selection)->getCurrentMenuItem()->w &&

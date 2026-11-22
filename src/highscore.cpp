@@ -467,8 +467,8 @@ bool HighscoreList::eventloop(bool nameAlterable, bool *redrawNeeded) {
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			if (event.button.button == SDL_BUTTON_LEFT && !nameAlterable) {
-				int event_x = Screen::xToClipRect(event.motion.x);
-				int event_y = Screen::yToClipRect(event.motion.y);
+				int event_x = Screen::xToClipRect(event.button.x);
+				int event_y = Screen::yToClipRect(event.button.y);
 				if ((Constants::WINDOW_WIDTH-sfBackItem->w)>>1 <= event_x && event_x <= (Constants::WINDOW_WIDTH+sfBackItem->w)>>1 && 430 <= event_y && event_y <= 430+sfBackItem->h) {
 					return false;
 				}
