@@ -3,7 +3,7 @@ Pacman
 
 ![in-game screenshot](https://libregamewiki.org/images/1/18/Pacman.png "in-game screenshot")
 
-A clone of the original Pac-Man, created by Toru Iwatani at Namco. It was inspired by Paul Neave's Pac-Man clone, and one of its main goals is very low CPU usage.
+A clone of the original Pac-Man, created by Toru Iwatani at Namco. It was inspired by Paul Neave's [Pac-Man clone](https://web.archive.org/web/20040930222627/http://www.neave.com/games/pacman/).
 
 ## Build ##
 
