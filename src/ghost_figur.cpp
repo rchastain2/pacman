@@ -318,11 +318,11 @@ void Ghost::move_on_rails(int ms, Rail **ar_s) {
 			// eliminate the directions where the rail end has already been reached
 			if (old_dir == LEFT && idxLeft>=0 && x <= ar_s[idxLeft]->x1 && ar_s[idxLeft]->y1==ar_s[idxLeft]->y2)
 				idxLeft = -1;
-			if (old_dir == RIGHT && idxRight>=0 && x >= ar_s[idxRight]->x2 && ar_s[idxLeft]->y1==ar_s[idxLeft]->y2)
+			if (old_dir == RIGHT && idxRight>=0 && x >= ar_s[idxRight]->x2 && ar_s[idxRight]->y1==ar_s[idxRight]->y2)
 				idxRight = -1;
-			if (old_dir == UP && idxUp>=0 && y <= ar_s[idxUp]->y1 && ar_s[idxLeft]->x1==ar_s[idxLeft]->x2)
+			if (old_dir == UP && idxUp>=0 && y <= ar_s[idxUp]->y1 && ar_s[idxUp]->x1==ar_s[idxUp]->x2)
 				idxUp = -1;
-			if (old_dir == DOWN && idxDown>=0 && y >= ar_s[idxDown]->y2 && ar_s[idxLeft]->x1==ar_s[idxLeft]->x2)
+			if (old_dir == DOWN && idxDown>=0 && y >= ar_s[idxDown]->y2 && ar_s[idxDown]->x1==ar_s[idxDown]->x2)
 				idxDown = -1;
 			// insert the directions to the array
 			if (idxLeft >= 0) {

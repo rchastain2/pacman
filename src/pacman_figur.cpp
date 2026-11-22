@@ -236,9 +236,9 @@ void Pacman::move_on_rails(int ms, Rail **ar_s) {
 		if (idxRight>=0 && ar_s[idxRight]->x2 <= this->x)
 			idxRight = -1;
 		if (idxUp>=0 && this->y <= ar_s[idxUp]->y1)
-			idxUp = 0;
+			idxUp = -1;
 		if (idxDown>=0 && ar_s[idxDown]->y2 <= this->y)
-			idxDown = 0;
+			idxDown = -1;
 		bool use_old_dir = false;
 		if ((this->direction_pre==LEFT && idxLeft<0) || (this->direction_pre==RIGHT && idxRight<0) || (this->direction_pre==UP && idxUp<0) || (this->direction_pre==DOWN && idxDown<0))
 			use_old_dir = true;
