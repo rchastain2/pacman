@@ -43,6 +43,8 @@ void Screen::cleanUpInstance() {
 }
 
 Screen::Screen():
+	window(NULL),
+	screen_surface(NULL),
 	sdlInitErrorOccured(false),
 	fullscreen(CommandLineOptions::exists("f","fullscreen")),
 	rect_num(0),
@@ -64,17 +66,28 @@ Screen::Screen():
                            		  Constants::WINDOW_WIDTH,
                            		  Constants::WINDOW_HEIGHT,
                            		  fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+		if (window == NULL) {
+			std::cout << "Creating window failed: " << SDL_GetError() << std::endl;
+			sdlInitErrorOccured = true;
+		}
+	}
+	if (!sdlInitErrorOccured) {
 		screen_surface = SDL_GetWindowSurface(window);
-		computeClipRect();
-		if(screen_surface == 0) {
+		if(screen_surface == NULL) {
 			std::cout << "Setting video mode failed: " << SDL_GetError() << std::endl;
 			sdlInitErrorOccured = true;
+		} else {
+			computeClipRect();
 		}
 	}
 	atexit(Screen::cleanUpInstance);
 }
 
 Screen::~Screen() {
+	if (window) {
+		SDL_DestroyWindow(window);
+		window = NULL;
+	}
 	TTF_Quit();
 	SDL_QuitSubSystem(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER);
 }
