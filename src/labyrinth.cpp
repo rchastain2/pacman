@@ -212,6 +212,14 @@ Labyrinth::~Labyrinth(){
 	SDL_FreeSurface(initText);
 	SDL_FreeSurface(pillSurface);
 	SDL_FreeSurface(bgSurface);
+	SDL_FreeSurface(smallScore);
+	SDL_FreeSurface(levelNumber);
+	for (int i = 0; i < 5; i++)
+		SDL_FreeSurface(ar_superpille[i]);
+	for (int i = 0; i < Constants::NUMBER_RAILS; i++) {
+		delete array_rails[i];
+		array_rails[i] = NULL;
+	}
 	if(level) {
 		level->cleanUpInstance();
 		level = NULL;
