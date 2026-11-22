@@ -589,7 +589,7 @@ bool HighscoreList::eventloop(bool nameAlterable, bool *redrawNeeded) {
 		case SDL_QUIT:
 			return false;
 		}
-		if (event.window.event == SDL_WINDOWEVENT_EXPOSED || event.window.event == SDL_WINDOWEVENT_FOCUS_GAINED) {
+		if (event.type == SDL_WINDOWEVENT && (event.window.event == SDL_WINDOWEVENT_EXPOSED || event.window.event == SDL_WINDOWEVENT_FOCUS_GAINED)) {
 			refreshWindow = true;
 		}
 	}
