@@ -3,7 +3,7 @@ Pacman
 
 ![in-game screenshot](https://libregamewiki.org/images/1/18/Pacman.png "in-game screenshot")
 
-This is a clone of the original Pac-Man by Namco, as I remember, that I played for the first time on an Atari 130 XL in the early 90s.
+This is a clone of the original Pac-Man, created by Toru Iwatani at Namco, as I remember, that I played for the first time on an Atari 130 XL in the early 90s.
 
 Also, Paul Neave's Pac-Man clone has inspired me greatly.
 
