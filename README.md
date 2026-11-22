@@ -58,3 +58,7 @@ make
 
 ## License ##
 Pacman is licensed under the terms of the GNU General Public License version 2 (or any later version).
+
+## Authors ##
+* Daniel Würfel <ebuc99@googlemail.com>
+* Martin Prussak
